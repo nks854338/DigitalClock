@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            background-image: linear-gradient(rgb(183, 185, 186),rgb(44, 42, 42),rgb(0, 0, 0));
+            margin: 5vmin;
+        }
+
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        .clock{
+            font-size: 8vmin;
+            background-color: black;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 2vmin;
+            box-shadow: #ffffff 0 0px 15px;
+        }
+        
+    </style>
+    <title>DigitalClock</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock"></div>
+    </div>
+</body>
+<script>
+    let clock=document.querySelector(".clock");
+    function curr_time() {
+        let time = new Date();
+        let hour=time.getHours();
+        let minute=time.getMinutes();
+        let second=time.getSeconds();
+        let state="AM";
+        if (hour>12){
+            hour=hour-12;
+        }
+        if(hour>11){
+            state="PM";
+        }
+        if(hour<10){
+            hour="0"+hour;
+        }
+        if(minute<10){
+            minute="0"+minute;
+        }
+        if(second<10){
+            second="0"+second;
+        }
+
+        let current_time = hour + " : " +minute + " : " + second + " : " + state;
+        clock.innerText=current_time;
+    }
+    setInterval(curr_time,1000);
+</script>
+
+</html>
