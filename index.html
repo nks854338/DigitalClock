@@ -3,72 +3,174 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="llZHxPuw_hrET1haCO6q7Jt96C3u8XgPMgZF16p7vlk" /><!--verfication code-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
 
-        body{
-            background-image: linear-gradient(rgb(183, 185, 186),rgb(44, 42, 42),rgb(0, 0, 0));
+        body {
+            background-image: linear-gradient(rgb(183, 185, 186), rgb(44, 42, 42), rgb(0, 0, 0));
             margin: 5vmin;
         }
 
-        .container{
-            display: flex;
+        .container {
+            display: grid;
             justify-content: center;
             align-items: center;
             height: 90vh;
+            text-align: center;
         }
 
-        .clock{
+        .clock {
             font-size: 8vmin;
             background-color: black;
             color: #ffffff;
             border-radius: 10px;
             padding: 2vmin;
             box-shadow: #ffffff 0 0px 15px;
+            height: 10vmin;
+            width: 70vmin;
         }
-        
+
+        .date {
+            font-size: 3vmin;
+            background-color: black;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 2vmin;
+            box-shadow: #ffffff 0 0px 10px;
+            height: 5vmin;
+            width: 40vmin;
+            margin: auto;
+        }
+
+        .samay{
+            text-align: center;
+            display: grid;
+            gap: 12px;
+            margin: auto;
+        }
+
+
+        @media(max-width:575px) {
+            .clock {
+                font-size: 9vmin;
+                padding: 2vmin;
+                height: 10vmin;
+                width: 95vmin;
+            }
+        }
     </style>
     <title>DigitalClock</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="clock"></div>
+        <div class="samay">
+            <div class="clock"></div>
+            <div class="date"></div>
+        </div>
     </div>
 </body>
 <script>
-    let clock=document.querySelector(".clock");
+    let clock = document.querySelector(".clock");
+    let date = document.querySelector(".date");
     function curr_time() {
         let time = new Date();
-        let hour=time.getHours();
-        let minute=time.getMinutes();
-        let second=time.getSeconds();
-        let state="AM";
-        if (hour>12){
-            hour=hour-12;
+        let hour = time.getHours();
+        let minute = time.getMinutes();
+        let second = time.getSeconds();
+        let Dates = time.getDate();
+        let day = time.getDay();
+        let month = time.getMonth();
+
+        let state = "AM";
+        if (hour > 12) {
+            hour = hour - 12;
         }
-        if(hour>11){
-            state="PM";
+        if (hour > 11) {
+            state = "PM";
         }
-        if(hour<10){
-            hour="0"+hour;
+        if (hour < 10) {
+            hour = "0" + hour;
         }
-        if(minute<10){
-            minute="0"+minute;
+        if (minute < 10) {
+            minute = "0" + minute;
         }
-        if(second<10){
-            second="0"+second;
+        if (second < 10) {
+            second = "0" + second;
         }
 
-        let current_time = hour + " : " +minute + " : " + second + " : " + state;
-        clock.innerText=current_time;
+
+        if (day == 0) {
+            day = "Sunday";
+        }
+        else if (day == 1) {
+            day = "Monday";
+        }
+        else if (day == 2) {
+            day = "Tuesday";
+        }
+        else if (day == 3) {
+            day = "Wednesday";
+        }
+        else if (day == 4) {
+            day = "Thursday";
+        }
+        else if (day == 5) {
+            day = "Friday";
+        }
+        else if (day == 6) {
+            day = "Saturday";
+        }
+
+        if (month == 0) {
+            month = "January";
+        }
+        else if (month == 1) {
+            month = "February";
+        }
+        else if (month == 2) {
+            month = "March";
+        }
+        else if (month == 3) {
+            month = "April";
+        }
+        else if (month == 4) {
+            month = "May";
+        }
+        else if (month == 5) {
+            month = "June";
+        }
+        else if (month == 6) {
+            month = "July";
+        }
+        else if (month == 7) {
+            month = "August";
+        }
+        else if (month == 8) {
+            month = "September";
+        }
+        else if (month == 9) {
+            month = "October";
+        }
+        else if (month == 10) {
+            month = "November";
+        }
+        else if (month == 11) {
+            month = "December";
+        }
+
+        let current_time = hour + " : " + minute + " : " + second + " : " + state;
+        let current_date = day + ", " + Dates + " " + month;
+        date.innerText = current_date;
+        clock.innerText = current_time;
     }
-    setInterval(curr_time,1000);
+    setInterval(curr_time, 1000);
+
+
 </script>
 
 </html>
