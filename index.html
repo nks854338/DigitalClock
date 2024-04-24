@@ -87,7 +87,13 @@
         let day = time.getDay();
         let month = time.getMonth();
 
-        let state = "AM";
+          let state = "";
+        if(hour<12){
+            state = "AM";
+        }
+        else{
+            state = "PM";
+        }
         if (hour > 12) {
             hour = hour - 12;
         }
